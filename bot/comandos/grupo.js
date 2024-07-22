@@ -502,7 +502,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'mt':
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     let usuarioTexto = texto_recebido
                     let respostaMarcar = usuarioTexto.length > 0 ? criarTexto(comandos_info.grupo.mt.msgs.resposta_motivo, participantes.length, usuarioTexto) : criarTexto(comandos_info.grupo.mt.msgs.resposta, participantes.length)
                     await socket.enviarTextoComMencoes(c, id_chat, respostaMarcar, participantes)
@@ -513,7 +513,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 
             case 'mm':
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     let membrosMarcados = []
                     let usuarioTexto = texto_recebido
                     for(let membro of participantes){
