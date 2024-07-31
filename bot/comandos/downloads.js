@@ -29,7 +29,7 @@ export const downloads = async(c, mensagemBaileys, botInfo) => {
                     let usuarioTexto = texto_recebido
                     const {resultado: resultadoInfoVideo} = await api.Downloads.obterInfoVideoYT(usuarioTexto)
                     if(resultadoInfoVideo.isLiveContent) return await socket.responderTexto(c, id_chat, comandos_info.downloads.play.msgs.erro_live,mensagem)
-                    else if (resultadoInfoVideo.lengthSeconds > 300) return await socket.responderTexto(c, id_chat, comandos_info.downloads.play.msgs.limite, mensagem)
+                    else if (resultadoInfoVideo.lengthSeconds > 2400) return await socket.responderTexto(c, id_chat, comandos_info.downloads.play.msgs.limite, mensagem)
                     const mensagemEspera = criarTexto(comandos_info.downloads.play.msgs.espera, resultadoInfoVideo.title, resultadoInfoVideo.durationFormatted)
                     await socket.responderTexto(c, id_chat, mensagemEspera, mensagem)
                     const {resultado : resultadoYTMP3} = await api.Downloads.obterYTMP3(resultadoInfoVideo.videoId)
@@ -46,7 +46,7 @@ export const downloads = async(c, mensagemBaileys, botInfo) => {
                     let usuarioTexto = texto_recebido
                     const {resultado : resultadoInfoVideo} = await api.Downloads.obterInfoVideoYT(usuarioTexto)
                     if(resultadoInfoVideo.isLiveContent) return await socket.responderTexto(c, id_chat, comandos_info.downloads.yt.msgs.erro_live, mensagem)
-                    else if(resultadoInfoVideo.lengthSeconds > 300) return await socket.responderTexto(c, id_chat, comandos_info.downloads.yt.msgs.limite, mensagem)
+                    else if(resultadoInfoVideo.lengthSeconds > 2400) return await socket.responderTexto(c, id_chat, comandos_info.downloads.yt.msgs.limite, mensagem)
                     const mensagemEspera = criarTexto(comandos_info.downloads.yt.msgs.espera, resultadoInfoVideo.title, resultadoInfoVideo.durationFormatted)
                     await socket.responderTexto(c, id_chat, mensagemEspera, mensagem)
                     const {resultado : resultadoYTMP4} = await api.Downloads.obterYTMP4(resultadoInfoVideo.videoId)

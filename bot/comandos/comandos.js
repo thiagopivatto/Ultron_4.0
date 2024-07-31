@@ -681,7 +681,7 @@ export function comandosInfo(botInfo){
                     espera: "[AGUARDE] 🎧 Sua música está sendo baixada e processada.\n\n"+
                     "Titulo: *{p1}*\n"+
                     "Duração: *{p2}*",
-                    limite: "[❗] A música deve ter menos de *5 minutos*",
+                    limite: "[❗] A música deve ter menos de *40 minutos*",
                     erro_live: "[❗] Houve um erro de download, o bot não aceita download de lives."
                 }
             },
@@ -692,7 +692,7 @@ export function comandosInfo(botInfo){
                     espera: "[AGUARDE] 🎥 Seu video está sendo baixado e processado.\n\n"+
                     "Titulo: *{p1}*\n"+
                     "Duração: *{p2}*",
-                    limite: "[❗] O video deve ter menos de *5 minutos*",
+                    limite: "[❗] O video deve ter menos de *40 minutos*",
                     erro_live: "[❗] Houve um erro de download, o bot não aceita download de lives."
                 }
             },

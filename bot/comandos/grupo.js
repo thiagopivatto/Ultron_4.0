@@ -215,7 +215,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case "revelar":
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     if(!mensagem_citada && !citacao.mensagem_vunica) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let mensagemVisivel = citacao.mensagem.message
                     mensagemVisivel[citacao.tipo].viewOnce = false
@@ -275,7 +275,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     
             case 'contador':
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     let estadoNovo = !grupo.contador.status
                     let membrosAtuais = grupo.participantes
                     if (estadoNovo) {
@@ -367,7 +367,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case "topativos":
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     if(!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let qtdUsuarios = texto_recebido
                     if(isNaN(qtdUsuarios)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.erro_qtd , mensagem)
@@ -566,7 +566,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
             
             case 'add':
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
                     if (!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
                     let usuarioNumeros = texto_recebido.split(",")
@@ -663,7 +663,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'apg':
                 try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     if (!mensagem_citada) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
                     await socket.deletarMensagem(c, mensagem, mensagem_citada)
                 } catch (err){
