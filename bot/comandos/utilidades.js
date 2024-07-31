@@ -217,7 +217,7 @@ export const utilidades = async(c, mensagemBaileys, botInfo) => {
             case "ouvir":
                 try{
                     if(!mensagem_citada || citacao?.tipo != tiposMensagem.audio) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
-                    if(citacao.segundos > 90) return await socket.responderTexto(c, id_chat, comandos_info.utilidades.ouvir.msgs.erro_limite, mensagem)
+                    if(citacao.segundos > 2400) return await socket.responderTexto(c, id_chat, comandos_info.utilidades.ouvir.msgs.erro_limite, mensagem)
                     let bufferAudio = await downloadMediaMessage(citacao.mensagem, "buffer")
                     let {resultado: resultadoTranscricao} = await api.Audios.obterTranscricaoAudio(bufferAudio, {deepgram_secret_key : process.env.dg_secret_key?.trim()})
                     let textoTranscricao = resultadoTranscricao.results.channels[0].alternatives[0].transcript

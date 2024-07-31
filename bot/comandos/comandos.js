@@ -159,7 +159,7 @@ export function comandosInfo(botInfo){
                 descricao: '',
                 guia: `Ex: Responda um áudio com *${prefixo}ouvir* para transformar em texto.\n`,
                 msgs: {
-                    erro_limite: "[❗] Houve um erro na transcrição, o áudio ultrapassa *1m30s*",
+                    erro_limite: "[❗] Houve um erro na transcrição, o áudio ultrapassa *40m*",
                     sucesso: "🔤 Transcrição de áudio :\n\n"+
                     "-- {p1}"
                 }
