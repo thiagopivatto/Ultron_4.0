@@ -172,34 +172,37 @@ export const admin = async(c, mensagemBaileys, botInfo) => {
                 break
 
             case "bloquear":
-                try{
-                    let usuariosBloqueados = []
-                    if(mensagem_citada){
-                        usuariosBloqueados.push(citacao.remetente)
-                    } else if(mencionados.length > 1) {
-                        usuariosBloqueados = mencionados
+                try {
+                    let usuariosBloqueados = [];
+                    if (mensagem_citada) {
+                        usuariosBloqueados.push(citacao.remetente);
+                    } else if (mencionados.length > 1) {
+                        usuariosBloqueados = mencionados;
                     } else {
-                        let numeroInserido = texto_recebido
-                        if(numeroInserido.length == 0) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
-                        usuariosBloqueados.push(numeroInserido.replace(/\W+/g,"")+"@s.whatsapp.net")
+                        let numeroInserido = texto_recebido;
+                        if (numeroInserido.length == 0) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem);
+                        usuariosBloqueados.push(numeroInserido.replace(/\W+/g, "") + "@s.whatsapp.net");
                     }
-                    for (let usuario of usuariosBloqueados){
-                        if(numero_dono == usuario){
-                            await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.erro_donoerro_dono, usuario.replace(/@s.whatsapp.net/g, '')), mensagem)
+                    for (let usuario of usuariosBloqueados) {
+                        if (numero_dono == usuario) {
+                            await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.erro_dono, usuario.replace("@s.whatsapp.net", '')), mensagem);
                         } else {
-                            if(usuariosBloqueados.includes(usuario)) {
-                                await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.ja_bloqueado, usuario.replace(/@s.whatsapp.net/g, '')), mensagem)
+                            // Verificar se o usuário já está na lista de usuários bloqueados
+                            if (usuariosJaBloqueados.includes(usuario)) {
+                                await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.ja_bloqueado, usuario.replace("@s.whatsapp.net", '')), mensagem);
                             } else {
-                                await socket.bloquearContato(c, usuario)
-                                await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.sucesso, usuario.replace(/@s.whatsapp.net/g, '')), mensagem)
+                                // Bloquear o usuário e adicionar à lista de usuários já bloqueados
+                                await socket.bloquearContato(c, usuario);
+                                usuariosJaBloqueados.push(usuario);
+                                await socket.responderTexto(c, id_chat, criarTexto(comandos_info.admin.bloquear.msgs.sucesso, usuario.replace("@s.whatsapp.net", '')), mensagem);
                             }
                         }
                     }
-                } catch(err){
-                    throw err
+                } catch (err) {
+                    throw err;
                 }
-                break      
-
+                break
+                     
             case "desbloquear":
                 try{
                     let usuariosDesbloqueados = []
