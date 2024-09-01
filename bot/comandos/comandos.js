@@ -597,7 +597,7 @@ export function comandosInfo(botInfo){
                 guia:  `Ex: *${prefixo}top* qtde - tema - Exibe uma ranking de membros aleatórios com a quantidade e tema que você escolher.\n`,
                 msgs: {
                     erro_qtd: "[❗] A quantidade de pessoas não é um número válido.",
-                    limite_qtd: "[❗] A quantidade de pessoas deve ser menor que 50",
+                    limite_qtd: "[❗] A quantidade de pessoas deve ser menor que 200",
                     resposta_titulo: "╔══✪〘🏆 TOP {p1} {p2} 🏆 〙\n╠\n",
                     resposta_itens: "╠➥ {p1} {p2}° Lugar @{p3}\n"
                 }
@@ -1033,7 +1033,7 @@ export function comandosInfo(botInfo){
                 `*Obs*: Este comando só funciona com o *${prefixo}contador* ativado.\n`,
                 msgs: {
                     erro_qtd: "[❗] A quantidade de pessoas não é um número válido.",
-                    limite_qtd: "[❗] A quantidade de pessoas deve ser entre 1 e 50",
+                    limite_qtd: "[❗] A quantidade de pessoas deve ser entre 1 e 200",
                     erro_contador: "[❗] Este comando só funciona quando o contador está ativado.",
                     resposta_titulo: "╔══✪〘🏆 TOP {p1} ATIVOS 🏆 〙\n╠\n",
                     resposta_itens: "╠➥ {p1} {p2}° Lugar @{p3} - *{p4}* Msgs\n"
@@ -1086,7 +1086,7 @@ export function comandosInfo(botInfo){
                 `*Obs*: Este comando só funciona com o *${prefixo}contador* ativado.\n`,
                 msgs: {
                     erro_qtd: "[❗] A quantidade mínima de mensagens não é um número válido.",
-                    limite_qtd: "[❗] A quantidade mínima de mensagens deve ser entre 1 e 50",
+                    limite_qtd: "[❗] A quantidade mínima de mensagens deve ser entre 1 e 200",
                     erro_contador: "[❗] Este comando só funciona quando o contador está ativado.",
                     sucesso: "🤖✅ {p1} Membros com menos de {p2} mensagens foram banidos.",
                     sem_inativo: "✅ Não existem membros inativos válidos para serem banidos."

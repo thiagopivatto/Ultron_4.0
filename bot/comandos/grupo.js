@@ -319,7 +319,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     if(!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let qtdMensagem = texto_recebido
                     if(isNaN(qtdMensagem)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.imarcar.msgs.erro_qtd , mensagem)
-                    if(qtdMensagem < 1 || qtdMensagem > 50) return await socket.responderTexto(c, id_chat, comandos_info.grupo.imarcar.msgs.limite_qtd, mensagem)
+                    if(qtdMensagem < 1 || qtdMensagem > 200) return await socket.responderTexto(c, id_chat, comandos_info.grupo.imarcar.msgs.limite_qtd, mensagem)
                     if(!grupo.contador.status) return await socket.responderTexto(c, id_chat, comandos_info.grupo.imarcar.msgs.erro_contador, mensagem)
                     let usuariosInativos = await grupos.obterParticipantesInativos(id_grupo, qtdMensagem)
                     let qtdInativos = usuariosInativos.length
@@ -347,7 +347,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     if(!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
                     let qtdMensagem = texto_recebido
                     if(isNaN(qtdMensagem)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.ibanir.msgs.erro_qtd , mensagem)
-                    if(qtdMensagem < 1 || qtdMensagem > 50) return await socket.responderTexto(c, id_chat, comandos_info.grupo.ibanir.msgs.limite_qtd, mensagem)
+                    if(qtdMensagem < 1 || qtdMensagem > 200) return await socket.responderTexto(c, id_chat, comandos_info.grupo.ibanir.msgs.limite_qtd, mensagem)
                     if(!grupo.contador.status) return await socket.responderTexto(c, id_chat, comandos_info.grupo.ibanir.msgs.erro_contador , mensagem)
                     let usuariosInativos = await grupos.obterParticipantesInativos(id_grupo, qtdMensagem), usuariosBanidos = 0
                     if(usuariosInativos.length){
@@ -371,7 +371,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     if(!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let qtdUsuarios = texto_recebido
                     if(isNaN(qtdUsuarios)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.erro_qtd , mensagem)
-                    if(qtdUsuarios < 1 || qtdUsuarios > 50) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.limite_qtd , mensagem)
+                    if(qtdUsuarios < 1 || qtdUsuarios > 200) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.limite_qtd , mensagem)
                     if(!grupo.contador.status) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.erro_contador , mensagem)
                     let usuariosAtivos = await grupos.obterParticipantesAtivos(id_grupo, qtdUsuarios)
                     let usuariosMencionados = []
@@ -545,7 +545,38 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     } catch (err) {
                         throw err;
                     }
-                    break;
+                    break
+
+
+                // TENTAR AJUSTAR PRA PODER MARCAR O MTA
+
+                    // case 'mta':
+                    //     try {
+                    //         let usuarioTexto = texto_recebido.trim();
+                    //         let respostaMarcar;
+                    //         let mensagemA = mensagem_citada ? citacao.mensagem : mensagem
+
+                    //         if (mensagem_citada) {
+                    //             // Se houver uma mensagem citada, use o conteúdo dela
+                    //             respostaMarcar = mensagemA || '*ATENÇÃO!*';
+                    //         } else {
+                    //             // Caso contrário, use o texto do usuário ou a mensagem padrão
+                    //             respostaMarcar = usuarioTexto.length > 0 ? usuarioTexto : '*ATENÇÃO!*';
+                    //         }
+                            
+                    //         // Crie uma string de menções
+                    //         let mentionList = participantes
+                    //             .filter(member => member.id)
+                    //             .map(member => `@${member.id.split('@')[0]}`)
+                    //             .join(' ');
+                    
+                    //         // Enviar a mensagem
+                    //         await socket.enviarTextoComMencoes(c, id_chat, respostaMarcar, participantes);
+
+                    //     } catch (err) {
+                    //         throw err;
+                    //     }
+                    //     break
                              
                 
                 

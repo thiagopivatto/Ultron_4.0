@@ -333,7 +333,7 @@ export const diversao = async (c, mensagemBaileys, botInfo) => {
                     let idParticipantesAtuais = grupo.participantes
 
                     if (isNaN(qtdUsuarios)) return await socket.responderTexto(c, id_chat, comandos_info.diversao.top.msgs.erro_qtd, mensagem)
-                    if (qtdUsuarios > 50) return await socket.responderTexto(c, id_chat, comandos_info.diversao.top.msgs.limite_qtd, mensagem)
+                    if (qtdUsuarios > 200) return await socket.responderTexto(c, id_chat, comandos_info.diversao.top.msgs.limite_qtd, mensagem)
                     if (qtdUsuarios > grupo.participantes.length) return await socket.responderTexto(c, id_chat, comandos_info.diversao.top.msgs.erro_qtd, mensagem)
 
                     let respostaTexto = criarTexto(comandos_info.diversao.top.msgs.resposta_titulo, qtdUsuarios, temaRanking)
