@@ -702,7 +702,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break
 
-            case 'grupo':
+            case 'restrito':
                 try {
                     if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
                     if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)

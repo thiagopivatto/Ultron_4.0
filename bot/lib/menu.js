@@ -177,7 +177,7 @@ export const menuGrupo = (admin, botInfo)=>{
 |
 |- *${prefixo}add* +55 (11) 9xxxx-xxxx - Adiciona ao grupo.
 |- *${prefixo}ban* @marcarmembro - Bane do grupo.
-|- *${prefixo}grupo f* - Abre/Restringe o grupo só para ADMS.
+|- *${prefixo}restrito* - Abre/Restringe o grupo só para ADMS.
 |- *${prefixo}promover* @marcarmembro - Promove a ADM.
 |- *${prefixo}rebaixar* @marcaradmin - Rebaixa a MEMBRO.
 |- *${prefixo}link* - Exibe o link do grupo.
