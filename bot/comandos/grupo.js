@@ -702,16 +702,22 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break
 
-            case 'grupo f':
-                try{
+            case 'grupo':
+                try {
                     if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
                     if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
-                    let estadoNovo = !grupo.restrito_msg
-                    await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo)
-                } catch(err){
+                    let args = mensagem.split(' ')
+                    if (args[1] && args[1].toLowerCase() === 'f') {
+                        let estadoNovo = !grupo.restrito_msg
+                        await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo)
+                    } else {
+                        return await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "grupo f".', mensagem)
+                    }
+                } catch(err) {
                     throw err
                 }
-                break 
+                break
+                
         }
     } catch(err){
         await socket.responderTexto(c, id_chat, criarTexto(comandos_info.outros.erro_comando_codigo, comando), mensagem)
