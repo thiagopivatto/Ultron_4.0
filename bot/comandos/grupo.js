@@ -694,7 +694,8 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'apg':
                 try{
-                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                    if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
+                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     if (!mensagem_citada) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
                     await socket.deletarMensagem(c, mensagem, mensagem_citada)
                 } catch (err){
