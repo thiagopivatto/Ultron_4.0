@@ -705,19 +705,31 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'restrito':
                 try {
-                    if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
-                    let args = mensagem.split(' ')
-                    if (args[1] && args[1].toLowerCase() === 'f') {
-                        let estadoNovo = !grupo.restrito_msg
-                        await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo)
-                    } else {
-                        return await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "grupo f".', mensagem)
+                    // Verifica se o bot é admin, mas não interrompe o fluxo
+                    if (!bot_admin) {
+                        await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem);
                     }
-                } catch(err) {
-                    throw err
+            
+                    // Verifica se o usuário é admin, mas sem interromper o fluxo
+                    if (!usuario_admin) {
+                        await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem);
+                    }
+            
+                    // Continuar o processo normalmente
+                    let args = mensagem.split(' ');
+                    if (args.length > 1 && args[1].toLowerCase() === 'f') {
+                        let estadoNovo = !grupo.restrito_msg;
+                        await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
+                        // Confirmação de alteração de estado
+                        await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem);
+                    } else {
+                        // Feedback caso o comando seja incorreto
+                        await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "restrito f".', mensagem);
+                    }
+                } catch (err) {
+                    console.error("Erro ao executar o comando restrito:", err);
                 }
-                break
+                break;                
                 
         }
     } catch(err){
