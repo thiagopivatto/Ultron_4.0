@@ -715,21 +715,24 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                         await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem);
                     }
             
-                    // Continuar o processo normalmente
-                    let args = mensagem.split(' ');
+                    // Certifica-se de que mensagem é uma string antes de dividir
+                    let mensagemTexto = typeof mensagem === 'string' ? mensagem : String(mensagem);
+                    let args = mensagemTexto.split(' ');
+            
                     if (args.length > 1 && args[1].toLowerCase() === 'f') {
                         let estadoNovo = !grupo.restrito_msg;
                         await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
                         // Confirmação de alteração de estado
-                        await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem);
+                        await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagemTexto);
                     } else {
                         // Feedback caso o comando seja incorreto
-                        await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "restrito f".', mensagem);
+                        await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "restrito f".', mensagemTexto);
                     }
                 } catch (err) {
                     console.error("Erro ao executar o comando restrito:", err);
                 }
-                break;                
+                break
+                                
                 
         }
     } catch(err){
