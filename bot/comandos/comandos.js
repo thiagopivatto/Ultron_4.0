@@ -953,9 +953,9 @@ export function comandosInfo(botInfo){
                     sucesso : "✅ Link foi redefinido com sucesso"
                 }
             },
-            grupo: {
+            restrito: {
                 descricao: '',
-                guia: `Ex: *${prefixo}grupo f* - Abre/Restringe o grupo para ADMS.\n`,
+                guia: `Ex: *${prefixo}restrito* - Abre/Restringe o grupo para ADMS.\n`,
                 msgs: {}
             },
             alink: {
