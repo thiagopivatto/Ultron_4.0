@@ -703,7 +703,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break
 
-            case 'restrito':
+            case 'grupo':
                 try {
                     // Checa permissões sem interromper o fluxo
                     if (!bot_admin) {
@@ -714,17 +714,24 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                         await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem || { fromMe: false });
                     }
             
-                    // Alterna o estado de restrição sem necessidade de argumentos adicionais
-                    let estadoNovo = !grupo.restrito_msg;
-                    await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
-            
-                    // Confirmação para o usuário
-                    await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem || { fromMe: false });
+                    // Divide a mensagem e verifica o argumento
+                    let args = mensagem ? mensagem.split(' ') : [];
+                    if (args.length > 1 && args[1].toLowerCase() === 'f') {
+                        let estadoNovo = !grupo.restrito_msg;
+                        await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
+                        
+                        // Confirmação da mudança de estado
+                        await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem || { fromMe: false });
+                    } else {
+                        // Informa o formato correto caso o argumento 'f' esteja ausente
+                        await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "!grupo f" para alternar a restrição.', mensagem || { fromMe: false });
+                    }
             
                 } catch (err) {
-                    console.error("Erro ao executar o comando restrito:", err);
+                    console.error("Erro ao executar o comando grupo:", err);
                 }
                 break
+                
                 
                 
                                 

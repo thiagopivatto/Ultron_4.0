@@ -955,7 +955,7 @@ export function comandosInfo(botInfo){
             },
             restrito: {
                 descricao: '',
-                guia: `Ex: *${prefixo}restrito* - Abre/Restringe o grupo para ADMS.\n`,
+                guia: `Ex: *${prefixo}grupo f* - Abre/Restringe o grupo para ADMS.\n`,
                 msgs: {}
             },
             alink: {
