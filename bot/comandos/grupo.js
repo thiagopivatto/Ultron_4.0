@@ -705,28 +705,27 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'restrito':
                 try {
+                    // Checa permissões sem interromper o fluxo
                     if (!bot_admin) {
                         await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem || { fromMe: false });
                     }
-            
+                    
                     if (!usuario_admin) {
                         await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem || { fromMe: false });
                     }
             
-                    let mensagemTexto = typeof mensagem === 'string' ? mensagem : String(mensagem || '');
-                    let args = mensagemTexto.split(' ');
+                    // Alterna o estado de restrição sem necessidade de argumentos adicionais
+                    let estadoNovo = !grupo.restrito_msg;
+                    await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
             
-                    if (args.length > 1 && args[1].toLowerCase() === 'f') {
-                        let estadoNovo = !grupo.restrito_msg;
-                        await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);
-                        await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem || { fromMe: false });
-                    } else {
-                        await socket.responderTexto(c, id_chat, 'Comando incorreto. Tente "restrito f".', mensagem || { fromMe: false });
-                    }
+                    // Confirmação para o usuário
+                    await socket.responderTexto(c, id_chat, `Restrição de grupo agora está: ${estadoNovo ? 'Ativada' : 'Desativada'}`, mensagem || { fromMe: false });
+            
                 } catch (err) {
                     console.error("Erro ao executar o comando restrito:", err);
                 }
                 break
+                
                 
                                 
                 
