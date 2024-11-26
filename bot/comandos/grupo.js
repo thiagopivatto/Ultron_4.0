@@ -706,14 +706,8 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
             case 'restrito':
                 try {
                     // Checa permissões sem interromper o fluxo
-                    if (!bot_admin) {
-                        await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem || { fromMe: false });
-                    }
-                    
-                    if (!usuario_admin) {
-                        await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem || { fromMe: false });
-                    }
-            
+                    if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
+                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     // Alterna o estado de restrição sem necessidade de argumentos adicionais
                     let estadoNovo = !grupo.restrito_msg;
                     await socket.alterarRestricaoGrupo(c, id_grupo, estadoNovo);

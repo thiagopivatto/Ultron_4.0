@@ -414,6 +414,18 @@ export const diversao = async (c, mensagemBaileys, botInfo) => {
                 }
                 break
 
+                // COMANDOOSSSSS NOVOS ------------------------------------------------------
+                
+            case 'joke':
+                try {
+                    let response = await axios.get('https://official-joke-api.appspot.com/random_joke')
+                    let joke = `${response.data.setup} - ${response.data.punchline}`
+                    await socket.responderTexto(c, id_chat, joke, mensagem)
+                } catch (err) {
+                    await socket.responderTexto(c, id_chat, criarTexto(comandos_info.outros.erro_api, comando, 'Não foi possível obter uma piada no momento.'), mensagem)
+                }
+                break
+
             case 'vod':
                 try {
                     if (!mensagem_grupo) {
