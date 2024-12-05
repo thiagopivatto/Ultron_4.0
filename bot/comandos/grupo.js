@@ -646,8 +646,8 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case 'promover':
                 try{
-                    if (!usuario_admin || !dono) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
+                    if (!usuario_admin && !dono) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
                     let usuariosSelecionados = [], respostaUsuarios = ''
                     if(mencionados.length > 0) usuariosSelecionados = mencionados
                     else if(mensagem_citada) usuariosSelecionados.push(citacao.remetente)
