@@ -313,6 +313,19 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break
 
+                        
+            case "!alterarcont":
+                if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
+                if(args.length == 1)  return client.reply(from, erroComandoMsg(command), id)
+                // Alterar quantidade de mensagens enviadas pelo membro selecionado
+                let [idUsuario, qtdMensagens] = args
+                if(isNaN(qtdMensagens)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.alterarcont.msgs.erro_qtd, mensagem)
+                await grupos.alterarContagemParticipante(id_grupo, idUsuario, qtdMensagens)
+                await socket.responderTexto(c, id_chat, criarTexto(comandos_info.grupo.alterarcont.msgs.sucesso, qtdMensagens, idUsuario), mensagem)
+                break
+                
+
             case "imarcar":
                 try{
                     if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)

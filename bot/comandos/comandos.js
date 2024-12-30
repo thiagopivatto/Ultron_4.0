@@ -1080,6 +1080,17 @@ export function comandosInfo(botInfo){
                     resposta_itens: "╠➥ @{p1} - *{p2}* Msgs\n"
                 }
             },
+            alterarcont: {
+                descricao: '',
+                guia: `Ex: *${prefixo}alterarcont* 5 - Altera a quantidade de mensagens enviadas pelo membro selecionado.\n\n`+
+                `*Obs*: Este comando só funciona com o *${prefixo}contador* ativado.\n`,
+                msgs: {
+                    erro_qtd: "[❗] A quantidade mínima de mensagens não é um número válido.",
+                    limite_qtd: "[❗] A quantidade mínima de mensagens deve ser entre [1-50]",
+                    erro_contador: "[❗] Este comando só funciona quando o contador está ativado.",
+                    resposta: "🤖✅ A quantidade de mensagens para marcar os membros inativos foi alterada para *{p1}* mensagens."
+                }
+            },
             ibanir: {
                 descricao: '',
                 guia: `Ex: *${prefixo}ibanir* 10 - Bane todos os membros com menos de 10 mensagens.\n\n`+

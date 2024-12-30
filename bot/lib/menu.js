@@ -149,6 +149,7 @@ export const menuGrupo = (admin, botInfo)=>{
 |
 |- *${prefixo}contador* - Liga/desliga o contador de atividade (Mensagens).
 |- *${prefixo}atividade* @marcarmembro - Mostra a atividade do usuário no grupo. 
+|- *${prefixo}alterarcont* - Altera a quantidade de mensagens enviadas pelo membro selecionado.
 |- *${prefixo}imarcar* 1-50 - Marca todos os inativos com menos de 1 até 200 mensagens.
 |- *${prefixo}ibanir* 1-50 - Bane todos os inativos com  menos de 1 até 200 mensagens.
 |- *${prefixo}topativos* 1-50 - Marca os membros mais ativos em um ranking de 1-200 pessoas.
