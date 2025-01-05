@@ -91,7 +91,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     //Anti-Link
                     resposta += (grupo.antilink) ? comandos_info.grupo.status.msgs.resposta_variavel.antilink.on : comandos_info.grupo.status.msgs.resposta_variavel.antilink.off
                     //Anti-fake
-                    resposta += (grupo.antifake.status) ? criarTexto(comandos_info.grupo.status.msgs.resposta_variavel.antifake.on, grupo.antifake.ddi_liberados.toString()) : comandos_info.grupo.status.msgs.resposta_variavel.antifake.off
+                    //   resposta += (grupo.antifake.status) ? criarTexto(comandos_info.grupo.status.msgs.resposta_variavel.antifake.on, grupo.antifake.ddi_liberados.toString()) : comandos_info.grupo.status.msgs.resposta_variavel.antifake.off
                     //Anti-flood
                     resposta += (grupo.antiflood.status) ? criarTexto(comandos_info.grupo.status.msgs.resposta_variavel.antiflood.on, grupo.antiflood.max, grupo.antiflood.intervalo) : comandos_info.grupo.status.msgs.resposta_variavel.antiflood.off 
                     //Contador
@@ -239,23 +239,23 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break        
 
-            case 'afake':
-                try{
-                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
-                    if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
-                    let estadoNovo = !grupo.antifake.status
-                    if (estadoNovo) {
-                        let DDIAutorizados = !args.length ? ["55"] : args
-                        await grupos.alterarAntiFake(id_grupo, true, DDIAutorizados)
-                        await socket.responderTexto(c, id_chat,  comandos_info.grupo.afake.msgs.ligado, mensagem)
-                    } else {
-                        await grupos.alterarAntiFake(id_grupo, false)
-                        await socket.responderTexto(c, id_chat,  comandos_info.grupo.afake.msgs.desligado, mensagem)
-                    } 
-                } catch(err){
-                    throw err
-                }
-                break
+            // case 'afake':
+            //     try{
+            //         if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+            //         if (!bot_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.bot_admin, mensagem)
+            //         let estadoNovo = !grupo.antifake.status
+            //         if (estadoNovo) {
+            //             let DDIAutorizados = !args.length ? ["55"] : args
+            //             //await grupos.alterarAntiFake(id_grupo, true, DDIAutorizados)
+            //             await socket.responderTexto(c, id_chat,  comandos_info.grupo.afake.msgs.ligado, mensagem)
+            //         } else {
+            //             //await grupos.alterarAntiFake(id_grupo, false)
+            //             await socket.responderTexto(c, id_chat,  comandos_info.grupo.afake.msgs.desligado, mensagem)
+            //         } 
+            //     } catch(err){
+            //         throw err
+            //     }
+            //     break
 
             case "mutar":
                 try{

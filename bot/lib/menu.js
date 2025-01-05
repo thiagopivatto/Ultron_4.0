@@ -171,7 +171,7 @@ export const menuGrupo = (admin, botInfo)=>{
 |- *${prefixo}autosticker* - Ativa/desativa a criação automática de stickers.
 |- *${prefixo}alink* - Ativa/desativa o anti-link.
 |- *${prefixo}bv* - Ativa/desativa o bem-vindo.
-|- *${prefixo}afake* - Ativa/desativa o anti-fake.
+|- *${prefixo}afake* - Ativa/desativa o anti-fake. - DESATIVADO
 |- *${prefixo}aflood* - Ativa/desativa o anti-flood.
 |
 |--〖⌨️ *ADMINISTRATIVO*〗

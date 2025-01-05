@@ -991,7 +991,7 @@ export function comandosInfo(botInfo){
             },
             afake: {
                 descricao: '',
-                guia: `Ex: *${prefixo}afake* - Liga/desliga o anti-fake em grupos.\n`+
+                guia: `Ex: *${prefixo}afake* - Liga/desliga o anti-fake em grupos. - *DESATIVADO!*\n`+
                 `Ex: *${prefixo}afake* DDI - Configura o anti-fake para que todos números com o DDI exterior seja banido, exceto o que você escolheu.\n`+
                 `Ex: *${prefixo}afake* DDI1 DDI2 DDI3 - Configura o anti-fake para que todos números com DDI exterior sejam banidos, excetos o que você escolheu.\n\n`+
                 `*Obs*: A ativação do anti-fake bane pessoas com DDI do exterior (que não sejam 55 - Brasil).\n`,

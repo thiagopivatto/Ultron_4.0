@@ -51,7 +51,7 @@ export class GrupoControle {
     async registrarGrupo(dadosGrupo) {
         dadosGrupo.mutar = false
         dadosGrupo.bemvindo = { status: false, msg: '' }
-        dadosGrupo.antifake = { status: false, ddi_liberados: [] }
+        //dadosGrupo.antifake = { status: false, ddi_liberados: [] }
         dadosGrupo.antilink = false
         dadosGrupo.antiflood = { status: false, max: 10, intervalo: 10, msgs: [] }
         dadosGrupo.autosticker = false
@@ -367,36 +367,36 @@ export class GrupoControle {
     }
 
     //Recurso ANTI-FAKE
-    async alterarAntiFake(id_grupo, status = true, ddiAutorizados = []) {
-        await this.grupo.alterarAntiFake(id_grupo, status, ddiAutorizados)
-    }
+    // async alterarAntiFake(id_grupo, status = true, ddiAutorizados = []) {
+    //     await this.grupo.alterarAntiFake(id_grupo, status, ddiAutorizados)
+    // }
 
-    async filtroAntiFake(c, evento, grupoInfo, botInfo) {
-        try {
-            if (grupoInfo.antifake.status) {
-                const comandos_info = comandosInfo(botInfo)
-                let participante = evento.participants[0]
-                let grupoAdmins = grupoInfo.admins
-                let botAdmin = grupoAdmins.includes(botInfo.numero_bot)
+    // async filtroAntiFake(c, evento, grupoInfo, botInfo) {
+    //     try {
+    //         if (grupoInfo.antifake.status) {
+    //             const comandos_info = comandosInfo(botInfo)
+    //             let participante = evento.participants[0]
+    //             let grupoAdmins = grupoInfo.admins
+    //             let botAdmin = grupoAdmins.includes(botInfo.numero_bot)
 
-                if (!botAdmin) {
-                    await this.alterarAntiFake(evento.id, false)
-                } else {
-                    for (ddi of grupoInfo.antifake.ddi_liberados) {
-                        if (participante.startsWith(ddi)) return true
-                    }
-                    await socket.enviarTextoComMencoes(c, evento.id, criarTexto(comandos_info.outros.resposta_ban, participante.replace("@s.whatsapp.net", ""), comandos_info.grupo.afake.msgs.motivo, botInfo.nome), [participante])
-                    await socket.removerParticipante(c, evento.id, participante)
-                    return false
-                }
-            }
-            return true
-        } catch (err) {
-            err.message = `antiFake - ${err.message}`
-            consoleErro(err, "ANTI-FAKE")
-            return true
-        }
-    }
+    //             if (!botAdmin) {
+    //                 await this.alterarAntiFake(evento.id, false)
+    //             } else {
+    //                 for (ddi of grupoInfo.antifake.ddi_liberados) {
+    //                     if (participante.startsWith(ddi)) return true
+    //                 }
+    //                 await socket.enviarTextoComMencoes(c, evento.id, criarTexto(comandos_info.outros.resposta_ban, participante.replace("@s.whatsapp.net", ""), comandos_info.grupo.afake.msgs.motivo, botInfo.nome), [participante])
+    //                 await socket.removerParticipante(c, evento.id, participante)
+    //                 return false
+    //             }
+    //         }
+    //         return true
+    //     } catch (err) {
+    //         err.message = `antiFake - ${err.message}`
+    //         consoleErro(err, "ANTI-FAKE")
+    //         return true
+    //     }
+    // }
 
     // Recurso MUTAR GRUPO
     async alterarMutar(id_grupo, status = true) {

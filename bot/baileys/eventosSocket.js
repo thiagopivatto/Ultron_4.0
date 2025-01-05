@@ -94,7 +94,7 @@ export const atualizacaoParticipantesGrupo = async (c, evento, botInfo)=>{
             //SE O PARTICIPANTE ESTIVER NA LISTA NEGRA, EXPULSE
             if(!await grupos.verificarListaNegraUsuario(c, evento, botInfo)) return
             //ANTIFAKE
-            if(!await grupos.filtroAntiFake(c, evento, g_info, botInfo)) return
+            //if(!await grupos.filtroAntiFake(c, evento, g_info, botInfo)) return
             //BEM-VINDO
             await grupos.mensagemBemVindo(c, evento, g_info, botInfo)
             //CONTADOR
