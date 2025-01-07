@@ -903,6 +903,11 @@ export function comandosInfo(botInfo){
                     resposta_motivo: "{p1}"
                 }
             },
+            rt: {
+                descricao: '',
+                guia: `Ex: Responda uma mensagem com *${prefixo}rt* - Retransmite a mensagem e marca todos os membros do grupo.\n`,
+                msgs: {}
+            },
             adms: {
                 descricao: '',
                 guia: `Ex: Responder com *${prefixo}adms* - Marca todos os *ADMINISTRADORES* em uma postagem.\n\n`+

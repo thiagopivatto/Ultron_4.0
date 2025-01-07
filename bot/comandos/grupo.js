@@ -542,6 +542,16 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                 }
                 break
 
+            case 'rt':
+            try{
+                if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin, mensagem)
+                if(!mensagem_citada) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo), mensagem)
+                await socket.retransmitirMensagemMarcando(c, id_chat, citacao.mensagem, participantes)
+            } catch(err){
+                throw err
+            }
+            break
+
                 case 'mta':
                     try {                      
                         let usuarioTexto = texto_recebido.trim();
