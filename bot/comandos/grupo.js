@@ -380,7 +380,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case "topativos":
                 try{
-                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     if(!args.length) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let qtdUsuarios = texto_recebido
                     if(isNaN(qtdUsuarios)) return await socket.responderTexto(c, id_chat, comandos_info.grupo.topativos.msgs.erro_qtd , mensagem)
