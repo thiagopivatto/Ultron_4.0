@@ -275,7 +275,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
                     
             case 'contador':
                 try{
-                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     let estadoNovo = !grupo.contador.status
                     let membrosAtuais = grupo.participantes
                     if (estadoNovo) {
