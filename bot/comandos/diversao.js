@@ -426,57 +426,57 @@ export const diversao = async (c, mensagemBaileys, botInfo) => {
                 }
                 break
 
-            case 'vod':
-                try {
-                    if (!mensagem_grupo) {
-                        return await socket.responderTexto(c, id_chat, "Este comando só pode ser usado em grupos.", mensagem)
-                    }
-                    if (args.length < 1 || args.length > 2) {
-                        return await socket.responderTexto(c, id_chat, "Formato inválido. Use !vod [vdd/dsf] [nível]", mensagem)
-                    }
+            // case 'vod':
+            //     try {
+            //         if (!mensagem_grupo) {
+            //             return await socket.responderTexto(c, id_chat, "Este comando só pode ser usado em grupos.", mensagem)
+            //         }
+            //         if (args.length < 1 || args.length > 2) {
+            //             return await socket.responderTexto(c, id_chat, "Formato inválido. Use !vod [vdd/dsf] [nível]", mensagem)
+            //         }
 
-                    const tipoEscolha = args[0].toLowerCase()
-                    const nivel = parseInt(args[1])
-                    const tipoEscolhaMapeado = tipoEscolha === 'vdd' ? 'truth' : tipoEscolha === 'dsf' ? 'dare' : ''
+            //         const tipoEscolha = args[0].toLowerCase()
+            //         const nivel = parseInt(args[1])
+            //         const tipoEscolhaMapeado = tipoEscolha === 'vdd' ? 'truth' : tipoEscolha === 'dsf' ? 'dare' : ''
 
-                    if (!tipoEscolhaMapeado) {
-                        return await socket.responderTexto(c, id_chat, "Tipo de escolha inválido. Use vdd ou dsf.", mensagem)
-                    }
-                    if (isNaN(nivel) || nivel < 1 || nivel > 5) {
-                        return await socket.responderTexto(c, id_chat, "Nível inválido. Use um número de 1 a 5.", mensagem)
-                    }
+            //         if (!tipoEscolhaMapeado) {
+            //             return await socket.responderTexto(c, id_chat, "Tipo de escolha inválido. Use vdd ou dsf.", mensagem)
+            //         }
+            //         if (isNaN(nivel) || nivel < 1 || nivel > 5) {
+            //             return await socket.responderTexto(c, id_chat, "Nível inválido. Use um número de 1 a 5.", mensagem)
+            //         }
 
-                    const frasesVOD = await axios.get("https://gist.githubusercontent.com/thiagopivatto/3ed7f417a37590b75745cc1c4cba450a/raw/a960f63a10323565a21c32d13a457edca67ebb75/vod.json")
-                    const frasesFiltradas = frasesVOD.data.filter(frase => frase.level === nivel.toString() && frase.type.toLowerCase() === tipoEscolhaMapeado)
-                    const traduzirFrases = async (frases) => {
-                        return new Promise(async (resolve, reject) => {
-                            try {
-                                const targetLanguage = 'pt'
-                                const traducaoPromises = frases.map(async (frase) => {
-                                    const translation = await translate(frase.summary, { to: targetLanguage })
-                                    frase.summary = translation.text
-                                })
-                                await Promise.all(traducaoPromises)
-                                resolve({ sucesso: true, frases })
-                            } catch (err) {
-                                console.log(`API traduzirFrases - ${err.message}`)
-                                reject({ sucesso: false, erro: "Houve um erro no servidor de tradução." })
-                            }
-                        })
-                    }
+            //         const frasesVOD = await axios.get("https://gist.githubusercontent.com/thiagopivatto/3ed7f417a37590b75745cc1c4cba450a/raw/a960f63a10323565a21c32d13a457edca67ebb75/vod.json")
+            //         const frasesFiltradas = frasesVOD.data.filter(frase => frase.level === nivel.toString() && frase.type.toLowerCase() === tipoEscolhaMapeado)
+            //         const traduzirFrases = async (frases) => {
+            //             return new Promise(async (resolve, reject) => {
+            //                 try {
+            //                     const targetLanguage = 'pt'
+            //                     const traducaoPromises = frases.map(async (frase) => {
+            //                         const translation = await translate(frase.summary, { to: targetLanguage })
+            //                         frase.summary = translation.text
+            //                     })
+            //                     await Promise.all(traducaoPromises)
+            //                     resolve({ sucesso: true, frases })
+            //                 } catch (err) {
+            //                     console.log(`API traduzirFrases - ${err.message}`)
+            //                     reject({ sucesso: false, erro: "Houve um erro no servidor de tradução." })
+            //                 }
+            //             })
+            //         }
 
-                    if (frasesFiltradas.length > 0) {
-                        const { frases } = await traduzirFrases(frasesFiltradas)
-                        const fraseSelecionada = frases[Math.floor(Math.random() * frases.length)]
-                        const mensagemResposta = `🌟 *Nível:* ${nivel}\n🔥 *Tipo:* ${tipoEscolhaMapeado === 'truth' ? '🔮 Verdade' : '🎲 Desafio'}\n💬 *Frase:* ${fraseSelecionada.summary}`
-                        await socket.responderTexto(c, id_chat, mensagemResposta, mensagem)
-                    } else {
-                        await socket.responderTexto(c, id_chat, "Não foram encontradas frases com o nível e tipo especificados.", mensagem)
-                    }
-                } catch (err) {
-                    throw err
-                }
-                break
+            //         if (frasesFiltradas.length > 0) {
+            //             const { frases } = await traduzirFrases(frasesFiltradas)
+            //             const fraseSelecionada = frases[Math.floor(Math.random() * frases.length)]
+            //             const mensagemResposta = `🌟 *Nível:* ${nivel}\n🔥 *Tipo:* ${tipoEscolhaMapeado === 'truth' ? '🔮 Verdade' : '🎲 Desafio'}\n💬 *Frase:* ${fraseSelecionada.summary}`
+            //             await socket.responderTexto(c, id_chat, mensagemResposta, mensagem)
+            //         } else {
+            //             await socket.responderTexto(c, id_chat, "Não foram encontradas frases com o nível e tipo especificados.", mensagem)
+            //         }
+            //     } catch (err) {
+            //         throw err
+            //     }
+            //     break
 
             case 'musica':
                 try {

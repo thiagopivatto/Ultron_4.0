@@ -245,7 +245,6 @@ export const menuDiversao = (grupo, botInfo )=>{
 |- *${prefixo}par* @pessoa1 @pessoa2 - Mede o nivel de compatibilidade entre 2 pessoas.
 |- *${prefixo}roletarussa* - Expulsa um membro aleatório do grupo.
 |- *${prefixo}top [qtde] [tema]* - Gera um ranking com a quantidade e tema escolhido.
-|- *${prefixo}vod [vdd-dsf] [1-5]* - Verdade ou desafio.
 |
 ╰╼❥ ${nome_bot?.trim()}® by *${nome_adm?.trim()}*`
     } else {
