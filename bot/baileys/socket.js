@@ -26,9 +26,9 @@ export const lerMensagem = async(c, id_chat, remetente, id_mensagem) =>{
 export const atualizarPresenca = async(c, id_chat, tipo)=>{
     await c.presenceSubscribe(id_chat)
     await delayAleatorio(200, 400)
-    // await c.sendPresenceUpdate(tipo, id_chat)
-    // await delayAleatorio(300, 1000)
-    // await c.sendPresenceUpdate('paused', id_chat)
+    await c.sendPresenceUpdate(tipo, id_chat)
+    await delayAleatorio(300, 1000)
+    await c.sendPresenceUpdate('paused', id_chat)
 }
 
 export const alterarFotoPerfil = async(c, id_chat, bufferImagem)=>{
@@ -61,17 +61,7 @@ export const obterNumeroHost = async(c)=>{
 }
 
 export const obterContatosBloqueados = async (c) => { 
-    console.log("Obtendo contatos bloqueados...");
-
-    // Delay de 5 segundos para evitar rate limit
-    await new Promise(resolve => setTimeout(resolve, 5000));
-
-    try {
-        return await c.fetchBlocklist();
-    } catch (error) {
-        console.error("Erro ao obter contatos bloqueados:", error);
-        return [];
-    }
+    return await c.fetchBlocklist();
 };
 
 
