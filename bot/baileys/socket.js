@@ -60,9 +60,19 @@ export const obterNumeroHost = async(c)=>{
     return id
 }
 
-export const obterContatosBloqueados = async(c)=>{ 
-    return await c.fetchBlocklist()
-}
+export const obterContatosBloqueados = async (c) => { 
+    console.log("Obtendo contatos bloqueados...");
+
+    // Delay de 5 segundos para evitar rate limit
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    try {
+        return await c.fetchBlocklist();
+    } catch (error) {
+        console.error("Erro ao obter contatos bloqueados:", error);
+        return [];
+    }
+};
 
 
 

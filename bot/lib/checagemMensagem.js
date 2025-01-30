@@ -8,6 +8,7 @@ import {comandosInfo, verificarComandoExiste} from '../comandos/comandos.js'
 
 
 export const checagemMensagem = async (c, mensagemBaileys, botInfo) => {
+    await new Promise(resolve => setTimeout(resolve, 2000));
     try {
         //Atribuição de valores
         const bot = new BotControle()
