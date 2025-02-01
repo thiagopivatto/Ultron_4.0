@@ -65,6 +65,7 @@ async function connectToWhatsApp(){
         const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
         async function processarMensagemComDelay() {
+            const m = events['messages.upsert']
             await delay(1000); // Aguarda 1s entre mensagens
             await eventosSocket.receberMensagem(c, m, botInfo);
         }
