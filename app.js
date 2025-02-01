@@ -30,7 +30,10 @@ async function connectToWhatsApp(){
         //Atualização na conexão
         if(events['connection.update']){
             const update = events['connection.update']
-            const { connection } = update
+            const { connection, lastDisconnect } = update;
+            if (lastDisconnect?.error) {
+                console.log(`[⚠️] Desconectado com erro: ${lastDisconnect.error}`);
+            }
             let necessarioReconectar = false
             if(connection == 'open'){
                 await eventosSocket.conexaoAberta(c, botInfo)
@@ -39,7 +42,18 @@ async function connectToWhatsApp(){
             } else if (connection == 'close'){
                 necessarioReconectar = await eventosSocket.conexaoEncerrada(update, botInfo)
             }
-            if(necessarioReconectar) connectToWhatsApp()
+            let tentativasReconexao = 0;
+
+            async function reconectar() {
+                const delay = Math.min(30000, 2000 * (2 ** tentativasReconexao)); // Máx: 30s
+                console.log(`[🔄] Tentando reconectar em ${delay / 1000} segundos...`);
+                tentativasReconexao++;
+                await new Promise(res => setTimeout(res, delay));
+                connectToWhatsApp();
+            }
+
+            if(necessarioReconectar) reconectar();
+
         }
 
         // Atualização nas credenciais
@@ -48,9 +62,15 @@ async function connectToWhatsApp(){
         }
 
         // Ao receber novas mensagens
+        const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+        async function processarMensagemComDelay() {
+            await delay(1000); // Aguarda 1s entre mensagens
+            await eventosSocket.receberMensagem(c, m, botInfo);
+        }
         if(events['messages.upsert']){
             const m = events['messages.upsert']
-            if(inicializacaoCompleta) await eventosSocket.receberMensagem(c, m, botInfo)
+            if(inicializacaoCompleta) processarMensagemComDelay();
             else eventosEsperando.push({evento: 'messages.upsert', dados: m})
         }
 
