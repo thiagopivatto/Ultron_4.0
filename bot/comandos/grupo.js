@@ -215,7 +215,7 @@ export const grupo = async(c, mensagemBaileys, botInfo) => {
 
             case "revelar":
                 try{
-                    //if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
+                    if (!usuario_admin) return await socket.responderTexto(c, id_chat, comandos_info.outros.permissao.apenas_admin , mensagem)
                     if(!mensagem_citada && !citacao.mensagem_vunica) return await socket.responderTexto(c, id_chat, erroComandoMsg(comando, botInfo) , mensagem)
                     let mensagemVisivel = citacao.mensagem.message
                     mensagemVisivel[citacao.tipo].viewOnce = false
